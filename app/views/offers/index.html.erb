@@ -1,0 +1,6 @@
+<ul class="list-unstyled">
+  <% @offer.each do |offer| %>
+    <li><%= link_to "#{offer.game_date}#{offer.area}#{offer.ground}", offer_path(offer) %></li>
+  <% end %>
+  <%= paginate @offer %>
+</ul>

@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_060141) do
+ActiveRecord::Schema.define(version: 2019_08_24_095611) do
+
+  create_table "applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "offer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_applications_on_offer_id"
+    t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "offers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "game_date"
+    t.string "area"
+    t.string "ground"
+    t.string "memo"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_offers_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -24,4 +44,7 @@ ActiveRecord::Schema.define(version: 2019_08_15_060141) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "applications", "offers"
+  add_foreign_key "applications", "users"
+  add_foreign_key "offers", "users"
 end

@@ -1,3 +1,32 @@
-<div class="text-center">
-  <h1>Welcome!</h1>
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>Welcome!</h1>
+  </div>
 </div>
+
+<% unless logged_in? %>
+  <div class="btn-toolbar">
+    <div class="d-block mx-auto btn-group m-3">
+    <%= link_to 'ログイン', login_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+    <div class="d-block mx-auto btn-group m-3">
+      <%= link_to '新規登録', signup_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+<% end %>
+
+<div class="mt-3 mr-3 mb-3">
+  <h3>新着オファー</h3>
+</div>
+
+<ul class="list-unstyled">
+  <% @offer.each do |offer| %>
+    <li><%= link_to "#{offer.game_date}#{offer.area}#{offer.ground}", offer_path(offer) %></li>
+  <% end %>
+</ul>
+
+<% if logged_in? %>
+  <div class="btn-group mt-2 mr-2 mb-2">
+    <%= link_to 'オファーを投稿する', new_offer_path, class: 'btn btn-primary btn-sm' %>
+  </div>
+<% end %>

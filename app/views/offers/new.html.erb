@@ -1,0 +1,31 @@
+<div class="text-center">
+  <h1>オファー投稿</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <%=form_with(model: @offer, local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :game_date, '日時' %>
+        <div><%= f.datetime_select :game_date %></div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :area, '場所（都道府県）' %>
+        <%= f.text_field :area, class: 'form-control' %>
+      </div>
+     
+      <div class="form-group">
+        <%= f.label :ground, '場所（グラウンド）' %>
+        <%= f.text_field :ground, class: 'form-control' %>
+      </div>
+     
+      <div class="form-group">
+        <%= f.label :memo, 'メモ' %>
+        <%= f.text_field :memo, class: 'form-control' %>
+      </div>
+      
+      <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<img class="d-block mx-auto mb-3" src="<%= @offer.user.image %>">
+
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>チーム名</td>
+      <td><%= link_to @offer.user.name, user_path(@offer.user) %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @offer.user.email %></td>
+    </tr>
+    <tr>
+      <td>日時</td>
+      <td><%= @offer.game_date %></td>
+    </tr>
+    <tr>
+      <td>場所（都道府県）</td>
+      <td><%= @offer.area %></td>
+    </tr>
+    <tr>
+      <td>場所（グラウンド）</td>
+      <td><%= @offer.ground %></td>
+    </tr>
+    <tr>
+      <td>メモ</td>
+      <td><%= @offer.memo %></td>
+    </tr>
+    
+  </tbody>
+</table>

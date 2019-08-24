@@ -1,1 +1,37 @@
+<img class="d-block mx-auto mb-3" src="<%= @user.image %>">
 
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>チーム名</td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <td>活動拠点</td>
+      <td><%= @user.area %></td>
+    </tr>
+    <tr>
+      <td>チームレベル</td>
+      <td><%= @user.level %></td>
+    </tr>
+    <tr>
+      <td>メモ</td>
+      <td><%= @user.memo %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if current_user == @user %>
+    <div class="btn-toolbar">
+      <div class="d-block mx-auto btn-group m-3">
+        <%= link_to 'オファーを投稿する', new_offer_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+      <div class="d-block mx-auto btn-group m-3">
+        <%= link_to 'プロフィールを変更する', edit_user_path, class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
+<% end %>
