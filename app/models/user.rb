@@ -12,13 +12,13 @@ class User < ApplicationRecord
   
   mount_uploader :image, ImageUploader
   
-  def apply(other_offer)
-    unless self.offer == other_offer
-      self.applications.find_or_create_by(offer_id: other_offer.id)
+  def apply(offer)
+    unless self == offer.user
+      self.applications.find_or_create_by(offer_id: offer.id)
     end
   end
   
-  def apply?(other_offer)
-    self.applications.include?(other_offer)
+  def apply?(offer)
+    self.app_offers.include?(offer)
   end
 end

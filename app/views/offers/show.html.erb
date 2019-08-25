@@ -29,3 +29,34 @@
     
   </tbody>
 </table>
+
+<div class="row">
+  <div class="col-sm-6 mt-3 mb-3 text-center">
+    <% if logged_in? %>
+      <% if current_user == @offer.user %>
+        <%= link_to 'Delete', @offer, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+      <% elsif current_user.apply?(@offer) %>
+        <div class="btn btn-success">
+          <%= '応募済み' %>
+        </div>
+      <% else %>
+        <%= form_with(model: current_user.applications.build, local: true) do |f| %>
+        <%= hidden_field_tag :offer_id, @offer.id %>
+        <%= f.submit '応募する', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= "応募には" %><%= link_to 'ログイン', login_path %><%= "が必要です。" %>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6 mt-2">
+    <h5>このオファーに応募しているチーム</h5>
+    <ul class="list-unstyled">
+    <% @app_users.each do |app_user| %>
+      <li><%= link_to app_user.name, user_path(app_user) %></li>
+    <% end %>
+    </ul>
+    <%= paginate @app_users %>
+  </div>
+</div>

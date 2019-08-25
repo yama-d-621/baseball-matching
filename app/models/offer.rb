@@ -4,6 +4,6 @@ class Offer < ApplicationRecord
   validates :ground, presence: true, length: { maximum: 50 }
   
   belongs_to :user
-  has_many :applications
+  has_many :applications, dependent: :destroy
   has_many :app_users, through: :applications, source: :user
 end

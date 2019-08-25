@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   
   def show
+    @offers = @user.offers.order(id: :desc).page(params[:page])
+    @app_offers = @user.app_offers.order(id: :desc).page(params[:page])
   end
 
   def new

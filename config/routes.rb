@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :offers, only: [:index, :show, :new, :create] do
+  resources :offers, only: [:index, :show, :new, :create, :destroy] do
     member do
       get :app_users
     end
